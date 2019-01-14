@@ -90,7 +90,7 @@ public class DollarBoxToAmountTextConverter {
 
     public static String interpretSubcase(String subcase) {
         String subcaseText = "";
-
+        Boolean DASH_FLAG = false;
         if(subcase.length() == 3) {
             if(!subcase.startsWith("0")) {
                 subcaseText = NumericUtils.INDEX_WORDS[Character.getNumericValue(subcase.charAt(0))] + " " + NumericUtils.HUNDRED + " ";
@@ -103,7 +103,8 @@ public class DollarBoxToAmountTextConverter {
                 subcaseText += NumericUtils.TEENS_WORDS[Character.getNumericValue(subcase.charAt(1))];
                 subcase = "";
             } else if(!subcase.startsWith("0")) {
-                subcaseText += NumericUtils.TENS_WORDS[Character.getNumericValue(subcase.charAt(0))] + "-";
+                subcaseText += NumericUtils.TENS_WORDS[Character.getNumericValue(subcase.charAt(0))];
+                DASH_FLAG = true;
                 subcase = subcase.substring(1);
             } else {
                 subcase = subcase.substring(1);
@@ -112,6 +113,9 @@ public class DollarBoxToAmountTextConverter {
 
         if(subcase.length() == 1) {
             if(!subcase.startsWith("0")) {
+                if (DASH_FLAG) {
+                    subcaseText += "-";
+                }
                 subcaseText += NumericUtils.INDEX_WORDS[Character.getNumericValue(subcase.charAt(0))];
             }
         }
