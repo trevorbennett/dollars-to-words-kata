@@ -32,9 +32,14 @@ public class DollarBoxToAmountTextConverter {
         DollarBoxValue dollarBoxValue = new DollarBoxValue();
 
         if(dollarBoxInput.contains(".")){
-            String[] dollarBoxElements = dollarBoxInput.split("\\.");
-            dollarBoxValue.dollars = dollarBoxElements[0];
-            dollarBoxValue.cents = dollarBoxElements[1];
+            if(dollarBoxInput.startsWith(".")){
+                dollarBoxValue.dollars = DollarBoxValue.NO_DOLLARS_PROVIDED;
+                dollarBoxValue.cents = dollarBoxInput.substring(1);
+            } else {
+                String[] dollarBoxElements = dollarBoxInput.split("\\.");
+                dollarBoxValue.dollars = dollarBoxElements[0];
+                dollarBoxValue.cents = dollarBoxElements[1];
+            }
         } else {
             dollarBoxValue.dollars = dollarBoxInput;
             dollarBoxValue.cents = DollarBoxValue.NO_CENTS_PROVIDED;

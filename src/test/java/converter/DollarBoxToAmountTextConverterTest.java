@@ -18,6 +18,9 @@ public class DollarBoxToAmountTextConverterTest {
     private String parsedDollarValue = "10";
     private String parsedCentValue = "20";
 
+    private String parsedDollarValueLeadZero = "0";
+    private String parsedCentValueLeadZero = "45";
+
     private String onlyCentsAmountText = "forty-five cents";
     private String dollarsAndCentsAmountText = "ten dollars and twenty cents";
     private String onlyDollarsAmountText = "one thousand five dollars";
@@ -58,5 +61,13 @@ public class DollarBoxToAmountTextConverterTest {
         DollarBoxValue dollarBoxValue = DollarBoxToAmountTextConverter.parseToDollarElements(dollarsAndCentsDollarValue);
         assertEquals(parsedDollarValue, dollarBoxValue.getDollars());
         assertEquals(parsedCentValue, dollarBoxValue.getCents());
+
+        dollarBoxValue = DollarBoxToAmountTextConverter.parseToDollarElements(onlyCentsDollarValue);
+        assertEquals(parsedDollarValueLeadZero, dollarBoxValue.getDollars());
+        assertEquals(parsedCentValueLeadZero, dollarBoxValue.getCents());
+
+        dollarBoxValue = DollarBoxToAmountTextConverter.parseToDollarElements(onlyCentsDollarValueMissingLeadingZero);
+        assertEquals(parsedDollarValueLeadZero, dollarBoxValue.getDollars());
+        assertEquals(parsedCentValueLeadZero, dollarBoxValue.getCents());
     }
 }
