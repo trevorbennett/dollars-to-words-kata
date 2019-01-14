@@ -28,8 +28,19 @@ public class DollarBoxToAmountTextConverterTest {
 
     private String nineNineNineNumeric = "999";
     private String thirtyOughtSixNumeric = "3006";
+    private String teenNumeric = "316";
+    private String entireSubcaseOfZeroesNumeric = "1000555";
+    private String largeNumberNumeric = "999888777666";
+
+
+
+
+
     private String nineNineNineWords = "nine hundred ninety-nine";
     private String thirtyOughtSixWords = "three thousand six";
+    private String teenWords = "three hundred sixteen";
+    private String entireSubcaseOfZeroesWords = "one million five hundred fifty-five";
+    private String largeNumberWords = "nine hundred ninety-nine billion eight hundred eighty eight million seven hundred seventy seven thousand six hundred sixty-six";
 
     //converter should avoid holding any state, so we test using class references rather than initializing an object for the test suite
 
@@ -80,8 +91,14 @@ public class DollarBoxToAmountTextConverterTest {
     public void shouldInterpretGivenNumbersCorrectly(){
         String interpretedOutput = DollarBoxToAmountTextConverter.interpret(nineNineNineNumeric);
         String interpretedOutput2 = DollarBoxToAmountTextConverter.interpret(thirtyOughtSixNumeric);
+        String interpretedOutput3 = DollarBoxToAmountTextConverter.interpret(teenNumeric);
+        String interpretedOutput4 = DollarBoxToAmountTextConverter.interpret(entireSubcaseOfZeroesNumeric);
+        String interpretedOutput5 = DollarBoxToAmountTextConverter.interpret(largeNumberNumeric);
 
         assertEquals(nineNineNineWords,interpretedOutput);
         assertEquals(thirtyOughtSixWords,interpretedOutput2);
+        assertEquals(teenWords,interpretedOutput3);
+        assertEquals(entireSubcaseOfZeroesWords,interpretedOutput4);
+        assertEquals(largeNumberWords,interpretedOutput5);
     }
 }

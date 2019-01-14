@@ -57,24 +57,27 @@ public class DollarBoxToAmountTextConverter {
         if(b.length() > 9) {
             subcase = b.substring(0,b.length()-9);
             b = b.substring(b.length()-9);
-
-            valueTextEquivalentOfAmount += interpretSubcase(subcase) + " " + NumericUtils.BILLION + " ";
+            if(!subcase.equals("000")) {
+                valueTextEquivalentOfAmount += interpretSubcase(subcase) + " " + NumericUtils.BILLION + " ";
+            }
         }
 
 
         if(b.length() > 6) {
             subcase = b.substring(0,b.length()-6);
             b = b.substring(b.length()-6);
-
-            valueTextEquivalentOfAmount += interpretSubcase(subcase) + " " + NumericUtils.MILLION + " ";
+            if(!subcase.equals("000")) {
+                valueTextEquivalentOfAmount += interpretSubcase(subcase) + " " + NumericUtils.MILLION + " ";
+            }
         }
 
 
         if(b.length() > 3) {
             subcase = b.substring(0,b.length()-3);
             b = b.substring(b.length()-3);
-
-            valueTextEquivalentOfAmount += interpretSubcase(subcase) + " " + NumericUtils.THOUSAND + " ";
+            if(!subcase.equals("000")) {
+                valueTextEquivalentOfAmount += interpretSubcase(subcase) + " " + NumericUtils.THOUSAND + " ";
+            }
         }
 
         if(b.length() < 4) {
@@ -101,6 +104,8 @@ public class DollarBoxToAmountTextConverter {
                 subcase = "";
             } else if(!subcase.startsWith("0")) {
                 subcaseText += NumericUtils.TENS_WORDS[Character.getNumericValue(subcase.charAt(0))] + "-";
+                subcase = subcase.substring(1);
+            } else {
                 subcase = subcase.substring(1);
             }
         }
