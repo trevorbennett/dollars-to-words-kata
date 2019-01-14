@@ -24,7 +24,7 @@ public class DollarBoxToAmountTextConverterTest {
     private String onlyCentsAmountText = "forty-five cents";
     private String dollarsAndCentsAmountText = "ten dollars and twenty cents";
     private String onlyDollarsAmountText = "one thousand five dollars";
-    private String largeAmountText = "nine billion eight hundred seventy-six million five hundred forty-three thousand one hundred ten dollars";
+    private String largeAmountText = "nine billion eight hundred seventy-six million five hundred forty-three thousand two hundred ten dollars";
 
     private String nineNineNineNumeric = "999";
     private String thirtyOughtSixNumeric = "3006";
@@ -40,7 +40,7 @@ public class DollarBoxToAmountTextConverterTest {
     private String thirtyOughtSixWords = "three thousand six";
     private String teenWords = "three hundred sixteen";
     private String entireSubcaseOfZeroesWords = "one million five hundred fifty-five";
-    private String largeNumberWords = "nine hundred ninety-nine billion eight hundred eighty eight million seven hundred seventy seven thousand six hundred sixty-six";
+    private String largeNumberWords = "nine hundred ninety-nine billion eight hundred eighty-eight million seven hundred seventy-seven thousand six hundred sixty-six";
 
     //converter should avoid holding any state, so we test using class references rather than initializing an object for the test suite
 
