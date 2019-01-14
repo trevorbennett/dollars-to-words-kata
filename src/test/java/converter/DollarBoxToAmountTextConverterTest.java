@@ -26,6 +26,11 @@ public class DollarBoxToAmountTextConverterTest {
     private String onlyDollarsAmountText = "one thousand five dollars";
     private String largeAmountText = "nine billion eight hundred seventy-six million five hundred fourty-three thousand one hundred ten dollars";
 
+    private String nineNineNineNumeric = "999";
+    private String thirtyOughtSixNumeric = "3006";
+    private String nineNineNineWords = "nine hundred ninety-nine";
+    private String thirtyOughtSixWords = "three thousand six";
+
     //converter should avoid holding any state, so we test using class references rather than initializing an object for the test suite
 
     @Test
@@ -69,5 +74,14 @@ public class DollarBoxToAmountTextConverterTest {
         dollarBoxValue = DollarBoxToAmountTextConverter.parseToDollarElements(onlyCentsDollarValueMissingLeadingZero);
         assertEquals(parsedDollarValueLeadZero, dollarBoxValue.getDollars());
         assertEquals(parsedCentValueLeadZero, dollarBoxValue.getCents());
+    }
+
+    @Test
+    public void shouldInterpretGivenNumbersCorrectly(){
+        String interpretedOutput = DollarBoxToAmountTextConverter.interpret(nineNineNineNumeric);
+        String interpretedOutput2 = DollarBoxToAmountTextConverter.interpret(thirtyOughtSixNumeric);
+
+        assertEquals(nineNineNineWords,interpretedOutput);
+        assertEquals(thirtyOughtSixWords,interpretedOutput2);
     }
 }

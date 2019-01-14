@@ -14,7 +14,7 @@ public class DollarBoxToAmountTextConverter {
         Boolean DOLLARS_EXIST = false;
 
         if(!dollarBoxValue.getDollars().equals("0")){
-            valueText += interpret(dollarBoxValue.getDollars());
+            valueText += interpret(dollarBoxValue.getDollars()) + " dollars";
             DOLLARS_EXIST = true;
         }
 
@@ -52,7 +52,14 @@ public class DollarBoxToAmountTextConverter {
     public static String interpret(String b){
 
         String valueTextEquivalentOfAmount = "";
-        String subcase = "";
+        String subcase;
+
+        if(b.length() > 3) {
+            subcase = b.substring(0,b.length()-3);
+            b = b.substring(b.length()-3);
+
+            valueTextEquivalentOfAmount += interpretSubcase(subcase) + " " + NumericUtils.THOUSAND + " ";
+        }
 
         if(b.length() < 4) {
             subcase = b;
@@ -67,7 +74,7 @@ public class DollarBoxToAmountTextConverter {
 
         if(subcase.length() == 3) {
             if(!subcase.startsWith("0")) {
-                subcaseText = NumericUtils.INDEX_WORDS[Character.getNumericValue(subcase.charAt(0))] + NumericUtils.SCALAR_WORDS[0];
+                subcaseText = NumericUtils.INDEX_WORDS[Character.getNumericValue(subcase.charAt(0))] + " " + NumericUtils.HUNDRED + " ";
             }
             subcase = subcase.substring(1);
         }
