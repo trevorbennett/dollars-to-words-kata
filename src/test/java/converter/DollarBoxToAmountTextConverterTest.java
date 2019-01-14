@@ -1,6 +1,7 @@
 package test.java.converter;
 
 import main.java.converter.DollarBoxToAmountTextConverter;
+import main.java.converter.DollarBoxValue;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,6 +12,9 @@ public class DollarBoxToAmountTextConverterTest {
     private String dollarsAndCentsDollarValue = "10.20";
     private String onlyDollarsDollarValue = "1005";
     private String largeDollarValue = "9876543210";
+
+    private String parsedDollarValue = "10";
+    private String parsedCentValue = "20";
 
     private String onlyCentsAmountText = "forty-five cents";
     private String dollarsAndCentsAmountText = "ten dollars and twenty cents";
@@ -43,4 +47,11 @@ public class DollarBoxToAmountTextConverterTest {
         assertEquals(largeAmountText, convertedDollarAmount);
     }
 
+
+    @Test
+    public void shouldParseDollarBoxValueIntoSubelements(){
+        DollarBoxValue dollarBoxValue = DollarBoxToAmountTextConverter.parseToDollarElements(dollarsAndCentsDollarValue);
+        assertEquals(parsedDollarValue, dollarBoxValue.getDollars());
+        assertEquals(parsedCentValue, dollarBoxValue.getCents());
+    }
 }
