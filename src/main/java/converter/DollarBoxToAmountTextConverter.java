@@ -54,6 +54,22 @@ public class DollarBoxToAmountTextConverter {
         String valueTextEquivalentOfAmount = "";
         String subcase;
 
+        if(b.length() > 9) {
+            subcase = b.substring(0,b.length()-9);
+            b = b.substring(b.length()-9);
+
+            valueTextEquivalentOfAmount += interpretSubcase(subcase) + " " + NumericUtils.BILLION + " ";
+        }
+
+
+        if(b.length() > 6) {
+            subcase = b.substring(0,b.length()-6);
+            b = b.substring(b.length()-6);
+
+            valueTextEquivalentOfAmount += interpretSubcase(subcase) + " " + NumericUtils.MILLION + " ";
+        }
+
+
         if(b.length() > 3) {
             subcase = b.substring(0,b.length()-3);
             b = b.substring(b.length()-3);
@@ -85,8 +101,8 @@ public class DollarBoxToAmountTextConverter {
                 subcase = "";
             } else if(!subcase.startsWith("0")) {
                 subcaseText += NumericUtils.TENS_WORDS[Character.getNumericValue(subcase.charAt(0))] + "-";
+                subcase = subcase.substring(1);
             }
-            subcase = subcase.substring(1);
         }
 
         if(subcase.length() == 1) {
