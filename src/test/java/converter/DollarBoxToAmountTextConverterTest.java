@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DollarBoxToAmountTextConverterTest {
 
     private String onlyCentsDollarValue = "0.45";
+    private String onlyCentsDollarValueMissingLeadingZero = ".45";
+
     private String dollarsAndCentsDollarValue = "10.20";
     private String onlyDollarsDollarValue = "1005";
     private String largeDollarValue = "9876543210";
@@ -27,6 +29,9 @@ public class DollarBoxToAmountTextConverterTest {
     public void shouldOutputTextualAmountForCentsOnly(){
         final String convertedDollarAmount = DollarBoxToAmountTextConverter.convert(onlyCentsDollarValue);
         assertEquals(onlyCentsAmountText, convertedDollarAmount);
+
+        final String convertedDollarAmountNoLeadingZero = DollarBoxToAmountTextConverter.convert(onlyCentsDollarValueMissingLeadingZero);
+        assertEquals(onlyCentsAmountText, convertedDollarAmountNoLeadingZero);
     }
 
     @Test
